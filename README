@@ -1,0 +1,12 @@
+Bonafide website
+
+Features:
+
+1) Email Validation 
+2) IP validation
+3) Referral code
+4) Waiting list
+5) Automated forwarding in FB, Twitter
+
+
+Framework: This webapp is built using simple JS and JQuery (no need to use a real Framework like React since the functionality is so simple)

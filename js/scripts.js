@@ -12,7 +12,20 @@ document.getElementById("claim_spot").onclick = function () {
 
         /* Send email information to backend by way of REST call */
         /*update waiting list number to backend by way of REST call */
-        location.href = "success.html";
+        $.get("http://ec2-52-3-245-85.compute-1.amazonaws.com:3000/", function(data, status){
+        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+        console.log("Name: " + document.getElementById("gname").value);
+        console.log("Email: " + document.getElementById("gemail").value);
+        });
+
+        var counter = parseInt($("#hiddenVal").val()); /*pull this from backend */
+        counter++;
+        $("#hiddenVal").val(counter);
+        $("#num_customers").text(counter);
+
+        /*send update to backend */
+
+        //location.href = "success.html";
     };
 
 

@@ -1,31 +1,71 @@
-/* Template: Viso - HR Recruiting Landing Page Template
-   Author: InovatikThemes
+/* Author: Anirban Gangopadhyay
    Created: Oct 2018
    Description: Custom JS file
 */
 
 
+/* gets the URL parameters */
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
+
 /*
-On click of  
+On click of claim spot this function is called 
 */
 document.getElementById("claim_spot").onclick = function () {
 
         /* Send email information to backend by way of REST call */
         /*update waiting list number to backend by way of REST call */
-        $.get("http://ec2-52-3-245-85.compute-1.amazonaws.com:3000/", function(data, status){
-        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-        console.log("Name: " + document.getElementById("gname").value);
-        console.log("Email: " + document.getElementById("gemail").value);
+        var email;
+        var IP_data = "no ip";
+        var referrer_token = "none";
+
+        $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function(data) {
+        console.log(JSON.stringify(data, null, 2));
+        IP_data = JSON.stringify(data, null, 2);
         });
 
-        var counter = parseInt($("#hiddenVal").val()); /*pull this from backend */
+        $.get("http://localhost:7550/getWaitingList", function(data, status){
+        var signups = JSON.parse(data)["value"];
+        email = document.getElementById("gemail").value;
+
+        console.log("Value: " + signups);
+        console.log("Email: " + email);
+
+        var counter = parseInt(signups); /*pull this from backend */        
         counter++;
         $("#hiddenVal").val(counter);
         $("#num_customers").text(counter);
 
-        /*send update to backend */
 
-        //location.href = "success.html";
+        /*updates the waiting list*/
+        $.get("http://localhost:7550/updateWaitingList", function(data, status){
+        });
+       
+        });
+
+
+        $.post( "http://localhost:7550/data", {"email": email, "IP": IP, "referrer_token": referrer_token})
+          .done(function( data ) {
+            alert( "Data Loaded: " + data );
+        });
+
+        /* set number of circles and token here before redirect */
+        /*location.href = "success.html";*/
+
+        
     };
 
 
@@ -34,6 +74,21 @@ document.getElementById("claim_spot").onclick = function () {
 	
 	/* Preloader */
 	$(window).on('load', function() {
+
+        /* Set environment variables */
+        $.get("http://localhost:7550/getWaitingList", function(data, status){
+        var signups = JSON.parse(data)["value"];
+        var counter = parseInt(signups); /*pull this from backend */        
+        $("#hiddenVal").val(1);
+        $("#num_customers").text(1);
+        console.log("Data count: " + $("#num_customers").attr("data-count"))
+        $("#num_customers").attr("data-count", counter)
+        });
+
+        var token = getUrlParameter('ref');
+        console.log("Token: " + token);
+
+
 		var preloaderFadeOutTime = 500;
 		function hidePreloader() {
 			var preloader = $('.spinner-wrapper');

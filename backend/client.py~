@@ -1,0 +1,22 @@
+"""
+Test file for the backend route
+"""
+
+def postData():
+	url = "http://localhost:7550/data"
+	body = dict()
+
+	body["email"] = "test email"
+	body["referrer_token"] = "test-token"
+	body["ip"] = "test_ip"
+
+	payload = json.dumps(body)
+	headers={'Accept': 'application/json', 'Content-Type': 'application/json'}
+
+    #post data to insert in backend
+    r = requests.post(url, headers=headers, data=payload)
+    print r.status_code
+
+
+if __name__ == "__main__":
+	print "hello world"

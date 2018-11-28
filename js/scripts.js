@@ -33,7 +33,7 @@ document.getElementById("claim_spot").onclick = function () {
         var referrer_token = "none";
 
         $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function(data) {
-        console.log(JSON.stringify(data, null, 2));
+        /*console.log(JSON.stringify(data, null, 2));*/
         IP_data = JSON.stringify(data, null, 2);
         });
 
@@ -57,7 +57,7 @@ document.getElementById("claim_spot").onclick = function () {
         });
 
 
-        $.post( "http://localhost:7550/data", {"email": email, "IP": IP, "referrer_token": referrer_token})
+        $.post( "http://localhost:7550/data", {"email": email, "IP": IP_data, "referrer_token": referrer_token})
           .done(function( data ) {
             alert( "Data Loaded: " + data );
         });

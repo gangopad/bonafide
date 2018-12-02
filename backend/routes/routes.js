@@ -28,23 +28,24 @@ var appRouter = function(app, db, umls_db, assert, len) {
 
     app.post("/data", function(req, res) {
     	var credentials = "Basic cGF1bC5ncmFkeUBjbHNkcy5jb206Z3JzMm1nViQoZFIkMytASw==";
+    	res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
 
     	if (!req.body.email || !req.body.referrer_token || !req.body.ip) {
+    		console.log(req.body);
 			return res.send({"status": "error", "message": "missing parameters"});
 
 	    } else {
 
-	    	/*
-	    	insertUsers(db, JSON.stringify(req.body), function(data) {
+	    	insertUsers(db, "users", JSON.stringify(req.body), function(data) {
 	    		res.setHeader("Access-Control-Allow-Origin", "*");
                 res.setHeader('Content-Type', 'application/json');
 				return res.sendStatus(200);
 	    	});
-	    	*/
-	    	console.log(JSON.stringify(req.body));
-	    	res.setHeader("Access-Control-Allow-Origin", "*");
-            res.setHeader('Content-Type', 'application/json');
-            res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+	   
+	    	//console.log(JSON.stringify(req.body));
 
 			return res.sendStatus(200);
 
@@ -98,7 +99,7 @@ var appRouter = function(app, db, umls_db, assert, len) {
                 console.log(result);
                 res.setHeader('Content-Type', 'application/json');
                 res.setHeader("Access-Control-Allow-Origin", "*");
-                return res.send(result[0]);
+                return res.send(JSON.stringify(result[0]));
             });
 	    }
 	});
@@ -123,9 +124,9 @@ var appRouter = function(app, db, umls_db, assert, len) {
     var insertUsers = function(db, dbType, data, callback) {
 		// Get the documents collection
 		if (dbType == "statistics") {
-            var collection = db.collection('users');
-         } else {
             var collection = db.collection('statistics');
+         } else {
+            var collection = db.collection('users');
 
          }
 		
@@ -138,15 +139,13 @@ var appRouter = function(app, db, umls_db, assert, len) {
 	     	mode: 'text',
 	     	pythonPath: '//anaconda/bin/python',
 	     	pythonOptions: ['-u'],
-	     	scriptPath: '/Users/gangopad/Company/Bonafide/website/backend',
+	     	scriptPath: '/Users/gangopad/Company/Bonafide/website/webapp/backend',
 	     	args: [data]
 	 	};
 
-	 	PythonShell.run('insert.py', options, function (err, query) {
+	 	PythonShell.run('insert.py', options, function (err, script_output) {
 			 if (err) throw err;
-		 	// results is an array consisting of messages collected during execution                                                                                                  
-		 	console.log('query: %j', query[0]);
-		 	eval(query[0]);		 
+		 	console.log(script_output);
 		});
 
     }

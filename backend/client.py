@@ -14,12 +14,13 @@ def postData():
 	body["ip"] = "test_ip"
 
 	payload = json.dumps(body)
-	#headers={'Accept': 'application/json', 'Content-Type': 'application/json'}
-	headers = {}
+	headers={'Accept': 'application/json', 'Content-Type': 'application/json'}
 
         #post data to insert in backend
 	r = requests.post(url, headers=headers, data=payload)
 	print r.status_code
+	print r.headers
+	print r.text
 
 
 if __name__ == "__main__":

@@ -28,21 +28,22 @@ document.getElementById("claim_spot").onclick = function () {
 
         /* Send email information to backend by way of REST call */
         /*update waiting list number to backend by way of REST call */
-        var email;
+        var email = "email";
         var IP_data = "no ip";
-        var referrer_token = "none";
+        var referrer_token = getUrlParameter('ref');
 
         $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function(data) {
-        /*console.log(JSON.stringify(data, null, 2));*/
+        /* console.log("IP shit: " + JSON.stringify(data, null, 2)); */
         IP_data = JSON.stringify(data, null, 2);
-        });
+        
+
 
         $.get("http://localhost:7550/getWaitingList", function(data, status){
         var signups = JSON.parse(data)["value"];
         email = document.getElementById("gemail").value;
 
-        console.log("Value: " + signups);
-        console.log("Email: " + email);
+        /* console.log("Value: " + signups);
+        console.log("Email: " + email); */
 
         var counter = parseInt(signups); /*pull this from backend */        
         counter++;
@@ -54,16 +55,23 @@ document.getElementById("claim_spot").onclick = function () {
         $.get("http://localhost:7550/updateWaitingList", function(data, status){
         });
        
-        });
+        
 
 
-        $.post( "http://localhost:7550/data", {"email": email, "IP": IP_data, "referrer_token": referrer_token})
+        $.post( "http://localhost:7550/data", {"email": email, "ip": IP_data, "referrer_token": referrer_token})
           .done(function( data ) {
-            alert( "Data Loaded: " + data );
+            console.log("Data response: " + JSON.stringify(data));
+
+            /*redirect */
+            location.href = "success.html?email=" + email; 
+            
+
         });
 
-        /* set number of circles and token here before redirect */
-        /*location.href = "success.html";*/
+        });
+
+        });
+        
 
         
     };
@@ -84,9 +92,6 @@ document.getElementById("claim_spot").onclick = function () {
         console.log("Data count: " + $("#num_customers").attr("data-count"))
         $("#num_customers").attr("data-count", counter)
         });
-
-        var token = getUrlParameter('ref');
-        console.log("Token: " + token);
 
 
 		var preloaderFadeOutTime = 500;

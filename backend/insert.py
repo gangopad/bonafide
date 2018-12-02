@@ -33,6 +33,7 @@ from email.MIMEText import MIMEText
 import base64
 from apiclient import errors
 import time
+import yaml
 
 
 # If modifying these scopes, delete your previously saved credentials
@@ -96,7 +97,8 @@ def updateUser(is_valid, data, db):
 	payload = dict()
 	token = str(uuid.uuid4())
 
-	ip_data = json.loads(data["ip"])
+	#ip_data = json.loads(data["ip"])
+	ip_data = yaml.safe_load(data["ip"])
 
 	
 	payload["email"] = email
@@ -132,7 +134,8 @@ if __name__ == "__main__":
 	client = MongoClient()
 	db = client.bonafide
 
-	data = json.loads(data)
+	#data = json.loads(data)
+	data = yaml.safe_load(data)
 	is_valid = checkIP(data["ip"], data["email"])
 	updateReferrer(is_valid, data["referrer_token"], db)
 	send_email = updateUser(is_valid, data, db)

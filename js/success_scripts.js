@@ -28,7 +28,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
         /* Set environment variables */
         var referral_link = "http://www.bonafide.com/?ref="
         var email = getUrlParameter('email');
-
+        console.log("Email: " + email)
+        $("#progress-steps").val(4);
 
         
         /* set number of circles and token here post redirect */

@@ -139,7 +139,7 @@ var appRouter = function(app, db, umls_db, assert, len) {
 	     	mode: 'text',
 	     	pythonPath: '//anaconda/bin/python',
 	     	pythonOptions: ['-u'],
-	     	scriptPath: '/Users/gangopad/Company/Bonafide/website/webapp/backend',
+	     	scriptPath: '/Users/gangopad/Company/Bonafide/website/bonafide/backend',
 	     	args: [data]
 	 	};
 

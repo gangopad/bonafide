@@ -20,6 +20,7 @@ from pymongo import MongoClient
 import json
 import uuid
 
+"""
 from __future__ import print_function
 import httplib2
 import os
@@ -33,6 +34,7 @@ from email.MIMEText import MIMEText
 import base64
 from apiclient import errors
 import time
+"""
 import yaml
 
 
@@ -110,7 +112,7 @@ def updateUser(is_valid, data, db):
 	payload["token"] = token
 	db["users"].insert(payload)
 	
-	print "Inserted the following payload: " + str(payload)
+	print("Inserted the following payload: " + str(payload))
 
 	return True
 
@@ -127,7 +129,7 @@ def sendEmail(email, is_valid, send_email):
 if __name__ == "__main__":
 
 	if len(sys.argv) < 2:
-		print "Run as python insert.py [data]"
+		print("Run as python insert.py [data]")
 		sys.exit(-1)
 
 	data = sys.argv[1]

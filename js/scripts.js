@@ -135,10 +135,6 @@ document.getElementById("claim_spot").onclick = function () {
     });
 
 
-    /* Header YouTube Background - YTPlayer */
-	jQuery(function(){
-		jQuery("#bgndVideo").YTPlayer();
-	});
     
 
     /* Image Slider 1 - Swiper */
@@ -537,5 +533,9 @@ document.getElementById("claim_spot").onclick = function () {
 	$(".button, a, button").mouseup(function() {
 		$(this).blur();
 	});
+    /* Header YouTube Background - YTPlayer */
+	  jQuery(function(){
+		    jQuery("#bgndVideo").YTPlayer();
+	  });
 
 })(jQuery);

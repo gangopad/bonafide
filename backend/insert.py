@@ -85,7 +85,7 @@ def updateUser(is_valid, data, db):
 		return
 
 	email = data["email"]
-	token = ""
+	token = data["token"]
 	referrals = 0
 
 	res = db.users.find({"email":email})
@@ -97,7 +97,6 @@ def updateUser(is_valid, data, db):
 
 
 	payload = dict()
-	token = str(uuid.uuid4())
 
 	#ip_data = json.loads(data["ip"])
 	ip_data = yaml.safe_load(data["ip"])

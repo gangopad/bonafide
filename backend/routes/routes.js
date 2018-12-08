@@ -94,12 +94,20 @@ var appRouter = function(app, db, umls_db, assert, len) {
 	    } else {
 			var query = { "email": req.query.email};
 			var fields = {"token": 1, "referrals": 1};
+			var default_res = {"referrals": "None", "token": "None"};
+
 			db.collection("users").find(query, fields).toArray(function(err, result) {
                 if (err) throw err;
                 console.log(result);
                 res.setHeader('Content-Type', 'application/json');
                 res.setHeader("Access-Control-Allow-Origin", "*");
-                return res.send(JSON.stringify(result[0]));
+
+                if (result.length > 0) {
+                	return res.send(JSON.stringify(result[0]));
+                } else {
+                	return res.send(JSON.stringify(default_res));
+                }
+                
             });
 	    }
 	});

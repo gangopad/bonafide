@@ -31,7 +31,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
         console.log("Email: " + email)
         $("#progress-steps").val(4);
 
-      var friendCount = 20;
+      var friendCount = 15;
       $("#number_of_friends").html(friendCount);
 
 

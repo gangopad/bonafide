@@ -97,10 +97,11 @@
 
 .progress-step.is-active .progress-marker {
     background-color: #91d343;
+    font-size: 20px;
 }
 
 .progress-step.is-complete .progress-marker {
-    background-color: #91d343;
+    background-color: rgb(73,159,86);
 }
 
 .progress-step.is-complete::after {
@@ -108,7 +109,7 @@
 }
 
 .progress-step:hover .progress-marker {
-    background-color:  #befd77;
+   /* background-color:  rgb(73,159,86);*/
 }
 
 .progress-tracker--center .progress-step {

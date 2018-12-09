@@ -1558,7 +1558,7 @@ input[type='checkbox'] {
 .counter #counter .counter-value {
     margin-bottom: 0.125rem;
     color: #fff;
-    font: 600 3.5rem/3.75rem "Montserrat", sans-serif;	
+    font: 600 3rem/3rem "Montserrat", sans-serif;	
     vertical-align: middle;
 }
 
@@ -1938,7 +1938,7 @@ a:hover.back-to-top {
 
 @media (min-width: 268px) {
     .counter #counter .counter-value {
-        font: 600 2.5rem/3.75rem "Montserrat", sans-serif;	
+        font: 600 2rem/2rem "Montserrat", sans-serif;	
     }
 
     .navbar-custom.top-nav-collapse {
@@ -2453,7 +2453,7 @@ a:hover.back-to-top {
     }
     
     .counter #counter .counter-value {
-        font: 600 4rem/3.75rem "Montserrat", sans-serif;	
+        font: 600 3rem/3rem "Montserrat", sans-serif;	
 	  }
 	  /* end of about */
 

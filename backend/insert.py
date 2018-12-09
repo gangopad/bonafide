@@ -125,6 +125,7 @@ def sendEmail(email, is_valid, send_email):
 		return 
 
 	#send an email on behalf of info@getbonafide.com to user
+	#os.system("python quickstart.py " + email)
 
 
 if __name__ == "__main__":

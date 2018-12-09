@@ -11,6 +11,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import mimetypes
 import os
+import sys
 
 # If modifying these scopes, delete the file token.json.
 #SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
@@ -89,8 +90,15 @@ def getLabels():
             print(label['name'])
 
 if __name__ == '__main__':
-    getLabels()
+
+  if len(sys.argv) < 2:
+      print("python quickstart.py [receiver]")
+      sys.exit(-1)
+
+  receiver = sys.argv[1]
+
+  getLabels()
     
-    message = CreateMessage("info@yourbonafide.com", "gangopad@gmail.com", "sup", "test message bitch")
-    SendMessage("info@yourbonafide.com", message)
+  message = CreateMessage("info@yourbonafide.com", receiver, "sup", "test message bitch")
+  SendMessage("info@yourbonafide.com", message)
 

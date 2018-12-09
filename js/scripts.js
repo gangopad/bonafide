@@ -33,6 +33,8 @@ document.getElementById("claim_spot").onclick = function () {
         var email = "email";
         var IP_data = "no ip";
         var referrer_token = getUrlParameter('ref');
+        var token =  Math.random().toString(36).substring(2, 6) + Math.random().toString(36).substring(2, 6);
+        var referrals = 0;
 
         $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function(data) {
         /* console.log("IP shit: " + JSON.stringify(data, null, 2)); */
@@ -60,13 +62,22 @@ document.getElementById("claim_spot").onclick = function () {
         
 
 
-        $.post( "http://localhost:7550/data", {"email": email, "ip": IP_data, "referrer_token": referrer_token})
+        $.post( "http://localhost:7550/data", {"email": email, "ip": IP_data, "referrer_token": referrer_token, "token": token})
           .done(function( data ) {
             console.log("Data response: " + JSON.stringify(data));
 
-            /*redirect */
-            location.href = "success.html?email=" + email; 
+        /*redirect */
+        /* set number of circles and token here pre redirect */
+        $.get("http://localhost:7550/getMetadata/?email=" + email, function(metadata, status){
             
+            if (metadata["token"] != "None") {
+                token = metadata["token"];
+                referrals = metadata["referrals"];
+            }
+        
+            location.href = "success.html?email=" + email + "&token=" + token + "&referrals=" + referrals; 
+
+        });  
 
         });
 

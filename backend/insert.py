@@ -19,6 +19,7 @@ import string
 from pymongo import MongoClient
 import json
 import uuid
+import datetime
 
 """
 from __future__ import print_function
@@ -109,6 +110,7 @@ def updateUser(is_valid, data, db):
 	payload["longitude"] = ip_data["geobyteslatitude"]
 	payload["referrals"] = 0
 	payload["token"] = token
+	payload["date"] = datetime.datetime.today().strftime('%Y-%m-%d')
 	db["users"].insert(payload)
 	
 	print("Inserted the following payload: " + str(payload))

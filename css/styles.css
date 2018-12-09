@@ -771,7 +771,7 @@ input[type='checkbox'] {
 /*    04. Header     */
 /*********************/
 .header {
-    background: linear-gradient(rgba(145, 211, 67, 0), rgba(145, 211, 67, 0)), url('../images/header-background.jpg') center center no-repeat;
+    background: linear-gradient(rgba(145, 211, 67, 0), rgba(145, 211, 67, 0)), url('../images/header-background-tomato.jpg') center center no-repeat;
     background-size: cover; 
     text-align: center;
     min-height: 100%;
@@ -1883,9 +1883,10 @@ a:hover.back-to-top {
     padding:1em;
     margin-top: 1em;
     margin-bottom: 1em;
-    background-color: rgb(240,240,240);
+    background-color: rgb(255,255,255);
     border: 1px solid rgba(0,0,0,0.3);
     border-radius: 3px;
+    font-weight: bold;
 }
 .friend-count-container{
     text-align: center;
@@ -1901,6 +1902,13 @@ a:hover.back-to-top {
 /*     19. Media Queries     */
 /*****************************/
 @media (max-width: 414px ){
+    .success-page{
+        background-size: 270%;
+        background-repeat: repeat;
+        padding-bottom: 1em;
+        background-position-y: -35px;
+
+    }
     .white-container{
         padding: 1.5em;
     }
@@ -1912,13 +1920,16 @@ a:hover.back-to-top {
         font-size: 1em;
         line-height: 1.2em;
     }
-    .thanks-header img{ margin-left: auto; margin-right: auto;}
+    .thanks-header img{ margin-left: 1em; margin-right: 1em; max-height: 30px;}
     .thanks-header span{
-        display: block;
+        display: inline-block;
     }
     .progress-container h4{
         font-size: 1em;
         line-height: 1.2em;
+    }
+    .progress-container{
+        margin-top: 2em;
     }
     
 }
@@ -2506,9 +2517,12 @@ a:hover.back-to-top {
     text-align: right !important;
 }
 
-.nav-item{
+.nav-item, .navbar-brand{
     display: none;
 }
-.top-nav-collapse .nav-item{
+.top-nav-collapse .nav-item, .top-nav-collapse .navbar-brand{
     display: inline-block;
+}
+.header{
+    position: initial !important;
 }

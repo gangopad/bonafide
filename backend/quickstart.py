@@ -91,14 +91,11 @@ def getLabels():
 
 if __name__ == '__main__':
 
-  if len(sys.argv) < 2:
-      print("python quickstart.py [receiver]")
-      sys.exit(-1)
+  #getLabels()
 
-  receiver = sys.argv[1]
-
-  getLabels()
+  with open("email.txt") as f:
+    email = f.read().strip()
     
-  message = CreateMessage("info@yourbonafide.com", receiver, "sup", "test message bitch")
+  message = CreateMessage("info@yourbonafide.com", email, "sup", "test message bitch")
   SendMessage("info@yourbonafide.com", message)
 

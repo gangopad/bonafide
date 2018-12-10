@@ -75,7 +75,7 @@ document.getElementById("claim_spot").onclick = function () {
                 referrals = metadata["referrals"];
             }
         
-            location.href = "success.html?email=" + email + "&token=" + token + "&referrals=" + referrals; 
+            location.href = "success.html?email=" + email + "&token=" + token + "&referrals=" + referrals;
 
         });  
 
@@ -99,11 +99,18 @@ document.getElementById("claim_spot").onclick = function () {
         /* Set environment variables */
         $.get("http://localhost:7550/getWaitingList", function(data, status){
         var signups = JSON.parse(data)["value"];
-        var counter = parseInt(signups); /*pull this from backend */        
+        var counter = parseInt(signups); /*pull this from backend */    
+        var meals = Math.round(counter * 4.35);
+
+        console.log("MEALS: " + meals.toLocaleString('en'));
+        console.log("COUNTER: " + counter.toLocaleString('en'));
+
+
         $("#hiddenVal").val(1);
         $("#num_customers").text(1);
-        console.log("Data count: " + $("#num_customers").attr("data-count"))
-        $("#num_customers").attr("data-count", counter)
+        console.log("Data count: " + $("#num_customers").attr("data-count"));
+        $("#num_customers").val("data-count", counter);
+        $("#num_meals").val("data-count", meals);
         });
 
 

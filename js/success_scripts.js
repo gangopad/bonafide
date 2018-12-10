@@ -30,6 +30,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
       var email = getUrlParameter('email');
       var token = getUrlParameter('token');
       var referrals = getUrlParameter('referrals');
+      referral_link = referral_link + token;
+
 
       var fb_link = "https://www.facebook.com/sharer/sharer.php?u=" + referral_link;
       var twitter_link = "https://twitter.com/intent/tweet?url=" + referral_link + "&text=Bonafide%20is%20on%20a%20mission%20to%20make%20home-cooked%20meals%20accessible%20to%20everyone,%20without%20the%20hassle%20of%20cutting%20any%20vegetables.%20Sign%20up%20for%20their%20private%20beta";
@@ -46,9 +48,21 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
       var friendCount = referrals;
-      $("#number_of_friends").html(friendCount);
+      var referrals_left = 0;
 
-      referral_link = referral_link + token;
+      if (friendCount < 5) {
+        referrals_left = 5 - friendCount;
+      } else if (friendCount < 10) {
+        referrals_left = 10 - friendCount;
+      } else if (friendCount < 25) {
+        referrals_left = 25 - friendCount;
+      } else if (friendCount< 50) {
+        referrals_left = 50 - friendCount;
+      }
+ 
+      $("#number_of_friends").html(friendCount);
+      $("#referrals_left").html(referrals_left);
+
       $("#referral_link").text(referral_link);
       console.log("Referral link: " + JSON.stringify($("#referral_link")));
 

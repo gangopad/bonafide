@@ -65,7 +65,7 @@
                 <a class="navbar-brand logo-image page-scroll" href="index.html"><img src="images/bonafide_white.png" alt="Bonafide"></a>
                 <div class="sign-up-container">
                     <span class="nav-item">
-                        <a class="btn-outline-sm" href="#application">Sign up</a>
+                        <a class="btn-outline-sm page-scroll" href="#application">Sign up</a>
                     </span>
 
                 </div>                
@@ -121,7 +121,9 @@
         <header id="header" class="header">
 
             <!-- Header YouTube Background -->
-            <div id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=6_2565hnCmI', optimizeDisplay: true, containment:'.header', useOnMobile: true, quality:'highres', autoPlay:true, mute: true, startAt: 0, stopAt: 15, opacity: 1, stopMovieOnBlur: false, showControls: false, showInfo:false}"></div>
+            <div id="bgndVideo" class="player" data-property="{videoURL: 'https://www.youtube.com', optimizeDisplay: true, containment:'.header', useOnMobile: true, quality:'highres', autoPlay:true, mute: true, startAt: 0, stopAt: 26, opacity: 1, stopMovieOnBlur: false, showControls: false, showInfo:false}">
+                <input type="hidden" id="hiddenVidVal">
+            </div>
             
             <!-- end of header youtube background -->
 
@@ -169,7 +171,7 @@
 
                                     <!-- Slide -->
                                     <div class="swiper-slide">
-                                        <p class="testimonial-text p-large">Simple, delicious, aromatic.</p>
+                                        <p class="testimonial-text p-large">Simple, delicious, convenient.</p>
                                         <h5 class="testimonial-author">Melanie A. from Philadelphia, PA</h5>
                                     </div> <!-- end of swiper-slide -->
                                     <!-- end of slide -->
@@ -326,7 +328,7 @@
                     <div class="col-lg-12 text-center">
                         <div class="counter-container">
                             <h2>ABOUT BONAFIDE</h2>
-                            <p class="p-large">Bonafide means authentic. Our mission is to bring authentic home-cooked foods into everyone's lives.<br><br>Our journey started two years ago at a cafe in Brooklyn, NY. We were speaking to a home entrepreneur who cooked and sold meals to her direct network, straight from her kitchen. Upon thinking more about how she could increase her reach, we took to the internet to reach local professionals who were too busy to cook in their time off. After two years of testing our chefs' meals, we're convinced that bringing this product to a wider market nationwide has tremendous potential, not only for the average American consumer, but for individuals who cook at home and would like to share the love that they put in each meal.</p>
+                            <p class="p-large">Bonafide means authentic. Our mission is to bring authentic home-cooked foods into everyone's lives.<br><br>Our journey started two years ago at a cafe in Brooklyn, NY. We were speaking to a home entrepreneur who cooked and sold meals straight from her kitchen. Upon thinking more about how she could increase her reach, we we took to the internet to reach local professionals who were too busy to cook in their time off. After two years of testing our chefs' meals, we are opening up the platform for individuals who cook at home to share the love that they put in each meal with everyone in their local areas.</p>
 
                             <!-- Counter -->
                             <div id="counter" class="text-center">
@@ -337,6 +339,7 @@
                                 </div>
                                 <div class="cell">
                                     <div class="counter-value number-count" id="num_meals" data-count="21384">1</div>
+                                    <input type="hidden" id="hiddenValMeals">
                                     <p class="counter-info">Meals Made</p>
                                 </div>
                                 <div class="cell" style="margin-right:0px;">

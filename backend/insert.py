@@ -120,13 +120,15 @@ def updateUser(is_valid, data, db):
 
 
 #sends user 
-def sendEmail(email, is_valid, send_email):
+def sendEmail(email, token, is_valid, send_email):
 	if is_valid is False or send_email is False:
 		return 
 
 	#send an email on behalf of info@getbonafide.com to user
+	referral_link = "http://www.yourbonafide.com/?ref=" + token
 	fout = open("email.txt", "wb")
-	fout.write(email)
+	fout.write(email + "\n")
+	fout.write(referral_link + "\n")
 	fout.close()
 
 	os.system("python quickstart.py")
@@ -147,4 +149,4 @@ if __name__ == "__main__":
 	is_valid = checkIP(data["ip"], data["email"])
 	updateReferrer(is_valid, data["referrer_token"], db)
 	send_email = updateUser(is_valid, data, db)
-	sendEmail(data["email"], is_valid, send_email) #The automated email we send them should have a link to their success page
+	sendEmail(data["email"], data["token"], is_valid, send_email) #The automated email we send them should have a link to their success page

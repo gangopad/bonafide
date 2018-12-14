@@ -84,6 +84,7 @@ CountTo.prototype.update = function () {
 CountTo.prototype.render = function () {
   "use strict"; 
   var formattedValue = this.options.formatter.call(this.$element, this.value, this.options);
+  console.log("FORMATTED VALUE: " + formattedValue);
   this.$element.text(formattedValue);
 };
 

@@ -52,7 +52,8 @@ document.getElementById("claim_spot").onclick = function () {
         var counter = parseInt(signups); /*pull this from backend */        
         counter++;
         $("#hiddenVal").val(counter);
-        $("#num_customers").text(counter);
+        $("#num_customers").attr("data-count", counter);
+
 
 
         /*updates the waiting list*/
@@ -75,7 +76,7 @@ document.getElementById("claim_spot").onclick = function () {
                 referrals = metadata["referrals"];
             }
         
-            location.href = "success.html?email=" + email + "&token=" + token + "&referrals=" + referrals;
+             location.href = "success.html?email=" + email + "&token=" + token + "&referrals=" + referrals;
 
         });  
 
@@ -97,20 +98,27 @@ document.getElementById("claim_spot").onclick = function () {
 	$(window).on('load', function() {
 
         /* Set environment variables */
+        var vid_url = "{videoURL:'https://www.youtube.com/watch?v=6_2565hnCmI', optimizeDisplay: true, containment:'.header', useOnMobile: true, quality:'highres', autoPlay:true, mute: true, startAt: 0, stopAt: 26, opacity: 1, stopMovieOnBlur: false, showControls: false, showInfo:false}";
+        $("#hiddenVidVal").val(vid_url);
+        $('#bgndVideo').attr("data-property", vid_url);
+
+        console.log ("video link: " + $('#bgndVideo').attr("data-property"));
+
         $.get("http://localhost:7550/getWaitingList", function(data, status){
         var signups = JSON.parse(data)["value"];
         var counter = parseInt(signups); /*pull this from backend */    
         var meals = Math.round(counter * 4.35);
 
-        console.log("MEALS: " + meals.toLocaleString('en'));
-        console.log("COUNTER: " + counter.toLocaleString('en'));
+        console.log("NUM CUSTOMERS: " + $("#num_customers").attr("data-count"));
+        $("#hiddenVal").val(counter);
+        $("#num_customers").attr("data-count", counter);
 
 
-        $("#hiddenVal").val(1);
-        $("#num_customers").text(1);
-        console.log("Data count: " + $("#num_customers").attr("data-count"));
-        $("#num_customers").val("data-count", counter);
-        $("#num_meals").val("data-count", meals);
+        $("#hiddenValMeals").val(counter);
+        $("#num_meals").attr("data-count", meals);
+
+
+        console.log("NUM CUSTOMERS: " + $("#num_customers").attr("data-count"));
         });
 
 

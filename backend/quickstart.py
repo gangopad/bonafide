@@ -57,7 +57,7 @@ def CreateMessage(sender, to, subject, message_text):
   Returns:
     An object containing a base64url encoded email object.
   """
-  message = MIMEText(message_text)
+  message = MIMEText(message_text, 'html')
   message['to'] = to
   message['from'] = sender
   message['subject'] = subject
@@ -92,10 +92,29 @@ def getLabels():
 if __name__ == '__main__':
 
   #getLabels()
-
   with open("email.txt") as f:
-    email = f.read().strip()
+    metadata = f.read().strip()
+
+  metadata = metadata.split("\n")
+  email = metadata[0].strip()
+  referral_link = metadata[1].strip()
+
+
+  subject = "Bonafide is changing the take-out delivery game"
+  content = """Hi There,<br><br>
+
+Thank you! You've been added to the Bonafide e-mail list. We will keep you up-to-date with any news and will be sure to let you know when we are launching in your city.<br><br>
+
+<strong>Interested in free meals?</strong><br>
+Get free meals by referring your friends. The more friends that join, the more free meals and discounts that you'll earn. Just share this link: """ + referral_link + """<br><br>
+
+You can check your progress towards your free meals """ + referral_link + """.<br><br>
+
+Sincerely,<br>
+The Bonafide Team<br>
+https://www.yourbonafide.com"""
+
     
-  message = CreateMessage("info@yourbonafide.com", email, "sup", "test message bitch")
+  message = CreateMessage("Bonafide - Authentic Home Cooked Food <info@yourbonafide.com>", email, subject, content)
   SendMessage("info@yourbonafide.com", message)
 

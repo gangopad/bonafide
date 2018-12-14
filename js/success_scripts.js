@@ -26,7 +26,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 	$(window).on('load', function() {
 
       /* Set environment variables */
-      var referral_link = "http://www.bonafide.com/?ref="
+      var referral_link = "http://www.yourbonafide.com/?ref="
       var email = getUrlParameter('email');
       var token = getUrlParameter('token');
       var referrals = getUrlParameter('referrals');

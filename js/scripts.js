@@ -23,6 +23,33 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 
+
+document.addEventListener('keydown', function() {
+  if (event.keyCode == 123) {
+    /* alert("This function has been disabled to prevent you from stealing my code!"); */
+    return false;
+  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+    /* alert("This function has been disabled to prevent you from stealing my code!"); */
+    return false;
+  } else if (event.ctrlKey && event.keyCode == 85) {
+    /* alert("This function has been disabled to prevent you from stealing my code!"); */
+    return false;
+  }
+}, false);
+
+if (document.addEventListener) {
+  document.addEventListener('contextmenu', function(e) {
+    /* alert("This function has been disabled to prevent you from stealing my code!"); */
+    e.preventDefault();
+  }, false);
+} else {
+  document.attachEvent('oncontextmenu', function() {
+    /* alert("This function has been disabled to prevent you from stealing my code!"); */
+    window.event.returnValue = false;
+  });
+}
+
+
 /*
 On click of claim spot this function is called 
 */
@@ -93,23 +120,17 @@ document.getElementById("claim_spot").onclick = function () {
 
 (function($) {
     "use strict"; 
-	
+
 	/* Preloader */
 	$(window).on('load', function() {
 
         /* Set environment variables */
-        var vid_url = "{videoURL:'https://www.youtube.com/watch?v=6_2565hnCmI', optimizeDisplay: true, containment:'.header', useOnMobile: true, quality:'highres', autoPlay:true, mute: true, startAt: 0, stopAt: 26, opacity: 1, stopMovieOnBlur: false, showControls: false, showInfo:false}";
-        $("#hiddenVidVal").val(vid_url);
-        $('#bgndVideo').attr("data-property", vid_url);
-
-        console.log ("video link: " + $('#bgndVideo').attr("data-property"));
-
         $.get("http://localhost:7550/getWaitingList", function(data, status){
         var signups = JSON.parse(data)["value"];
         var counter = parseInt(signups); /*pull this from backend */    
         var meals = Math.round(counter * 4.35);
 
-        console.log("NUM CUSTOMERS: " + $("#num_customers").attr("data-count"));
+        /* console.log("NUM CUSTOMERS: " + $("#num_customers").attr("data-count")); */
         $("#hiddenVal").val(counter);
         $("#num_customers").attr("data-count", counter);
 
@@ -118,7 +139,7 @@ document.getElementById("claim_spot").onclick = function () {
         $("#num_meals").attr("data-count", meals);
 
 
-        console.log("NUM CUSTOMERS: " + $("#num_customers").attr("data-count"));
+        /* console.log("NUM CUSTOMERS: " + $("#num_customers").attr("data-count")); */
         });
 
 

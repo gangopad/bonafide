@@ -110,6 +110,7 @@ def updateUser(is_valid, data, db):
 	payload["longitude"] = ip_data["geobyteslatitude"]
 	payload["referrals"] = 0
 	payload["token"] = token
+	payload["blacklisted"] = "False"
 	payload["date"] = datetime.datetime.today().strftime('%Y-%m-%d')
 	db["users"].insert(payload)
 	

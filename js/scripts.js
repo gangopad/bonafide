@@ -103,7 +103,7 @@ document.getElementById("claim_spot").onclick = function () {
                 referrals = metadata["referrals"];
             }
         
-             location.href = "success.html?email=" + email + "&token=" + token + "&referrals=" + referrals;
+             location.href = "success.html?token=" + token;
 
         });  
 

@@ -112,6 +112,33 @@ var appRouter = function(app, db, umls_db, assert, len) {
 	    }
 	});
 
+
+	/* Retrieves the number of referrals and email given token */
+    app.get("/getTokenMetadata", function(req, res) {
+
+	    if(!req.query.token) {
+			return res.send({"status": "error", "message": "missing parameters! [token]"});
+	    } else {
+			var query = { "token": req.query.token};
+			var fields = {"email": 1, "referrals": 1};
+			var default_res = {"referrals": "None", "email": "None"};
+
+			db.collection("users").find(query, fields).toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+                res.setHeader('Content-Type', 'application/json');
+                res.setHeader("Access-Control-Allow-Origin", "*");
+
+                if (result.length > 0) {
+                	return res.send(JSON.stringify(result[0]));
+                } else {
+                	return res.send(JSON.stringify(default_res));
+                }
+                
+            });
+	    }
+	});
+
     
 }
 

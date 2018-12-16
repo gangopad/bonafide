@@ -13,6 +13,7 @@ import mimetypes
 import os
 import sys
 from pymongo import MongoClient
+import datetime
 
 
 # If modifying these scopes, delete the file token.json.
@@ -83,12 +84,12 @@ def ListMessagesMatchingQuery(service, user_id, query, db):
 
 
 #pulls all email from that day
-def getEmail(start, end, db):
+def getEmail(end, db):
 	store = file.Storage('token.json')
   	creds = store.get()
   	user_id = "info@yourbonafide.com"
   	#query = "in:sent after:2014/01/01 before:2014/02/01"
-  	query = "in:inbox after:2018/12/13"
+  	query = "in:inbox after:" + end
 
   	if not creds or creds.invalid:
           flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
@@ -125,10 +126,12 @@ def updateDB(payload, db):
 
 if __name__ == '__main__':
 
-  start = ""
-  end = ""
+  if len(sys.argv) < 2:
+    print "python detect_bounce.py start"
+
+  end = datetime.datetime.today().strftime('%Y/%m/%d')
   client = MongoClient()
   db = client.bonafide
-  getEmail(start, end, db)
+  getEmail(end, db)
 
 

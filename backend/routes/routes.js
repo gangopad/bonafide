@@ -38,7 +38,6 @@ var appRouter = function(app, db, umls_db, assert, len) {
 			return res.send({"status": "error", "message": "missing parameters"});
 
 	    } else {
-
 	    	insertUsers(db, "users", JSON.stringify(req.body), function(data) {
 	    		res.setHeader("Access-Control-Allow-Origin", "*");
                 res.setHeader('Content-Type', 'application/json');

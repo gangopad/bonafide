@@ -127,9 +127,11 @@ def sendEmail(email, token, is_valid, send_email):
 
 	#send an email on behalf of info@getbonafide.com to user
 	referral_link = "http://www.yourbonafide.com/?ref=" + token
+	success_link = "http://www.yourbonafide.com/success?token=" + token
 	fout = open("email.txt", "wb")
 	fout.write(email + "\n")
 	fout.write(referral_link + "\n")
+	fout.write(success_link)
 	fout.close()
 
 	os.system("python quickstart.py")

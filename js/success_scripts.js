@@ -58,6 +58,9 @@ if (document.addEventListener) {
       var email = getUrlParameter('email')
       var referrals = getUrlParameter('referrals');
 
+      console.log("EMAIL: " + email);
+      console.log("REFERRALS: " + referrals);
+
       if (referrals == "None" || email == "None") {
 
       $.get("http://localhost:7550/getTokenMetadata/?token=" + token, function(metadata, status){    
@@ -157,7 +160,7 @@ if (document.addEventListener) {
       } else if ($(element).data('friend-count')==friendCount){
           $(element).addClass('is-active');
       }
-      
+
     });
 
   } 

@@ -95,7 +95,6 @@ document.getElementById("claim_spot").onclick = function () {
             console.log("Data response: " + JSON.stringify(data));
 
         /*redirect */
-        /* set number of circles and token here pre redirect */
         $.get("http://localhost:7550/getMetadata/?email=" + email, function(metadata, status){
             
             if (metadata["token"] != "None") {
@@ -103,7 +102,7 @@ document.getElementById("claim_spot").onclick = function () {
                 referrals = metadata["referrals"];
             }
         
-             location.href = "success.html?token=" + token;
+             location.href = "success.html?token=" + token + "&email=" + email + "&referrals=" + referrals;
 
         });  
 

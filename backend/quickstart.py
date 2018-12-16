@@ -98,6 +98,7 @@ if __name__ == '__main__':
   metadata = metadata.split("\n")
   email = metadata[0].strip()
   referral_link = metadata[1].strip()
+  success_link = metadata[2].strip()
 
 
   subject = "Bonafide is changing the take-out delivery game"
@@ -108,7 +109,7 @@ Thank you! You've been added to the Bonafide e-mail list. We will keep you up-to
 <strong>Interested in free meals?</strong><br>
 Get free meals by referring your friends. The more friends that join, the more free meals and discounts that you'll earn. Just share this link: """ + referral_link + """<br><br>
 
-You can check your progress towards your free meals """ + referral_link + """.<br><br>
+You can check your progress towards your free meals """ + success_link + """.<br><br>
 
 Sincerely,<br>
 The Bonafide Team<br>

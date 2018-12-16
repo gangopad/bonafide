@@ -178,7 +178,7 @@ var appRouter = function(app, db, umls_db, assert, len) {
 	 	};
 
 	 	PythonShell.run('insert.py', options, function (err, script_output) {
-			 if (err) throw err;
+			 /* if (err) throw err; */ 
 		 	console.log(script_output);
 		});
 

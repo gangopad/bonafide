@@ -130,12 +130,5 @@ if __name__ == '__main__':
   client = MongoClient()
   db = client.bonafide
   getEmail(start, end, db)
-  #bounced_emails = detectBounce(emails)
-  #updateDB(bounced_emails)
-
-  """
-  for email in emails:
-    print(email)
-  """
 
 
